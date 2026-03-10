@@ -15,7 +15,7 @@ class Executor:
     def __init__(self, config:DictConfig):
         self.config = config
         self.retrievers = {
-            source: get_retriever_cls(source)(config) for source in config.executor.source
+            "arxiv": get_retriever_cls("arxiv")(config)
         }
         self.reranker = get_reranker_cls(config.executor.reranker)(config)
         self.openai_client = OpenAI(api_key=config.llm.api.key, base_url=config.llm.api.base_url)
